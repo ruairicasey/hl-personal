@@ -11,3 +11,11 @@
 
 ### Updated
 - **`claude.md`** — added: error handling policy, WebSocket reconnection convention, `src/config.py` and `src/backtest/` to architecture, `MAX_POSITIONS` safety rule, testnet toggle note, config validation convention; fixed changelog path reference
+
+## 2026-02-20 — Order placement smoke test
+
+### Added
+- **`src/test_order.py`** — mainnet order smoke test: fetches BTC mid price, places 0.001 BTC GTC limit buy at 10% below mid, requires explicit Y/N confirmation before placing, waits 5s, then cancels; uses `Decimal` for all prices/sizes, correct Hyperliquid tick size rounding, formatted box display of order details, structured logging with timestamps; confirmed working on mainnet
+
+### Fixed
+- **`src/client.py`** — `get_exchange()` now creates `eth_account.Account` from private key and passes the wallet object to `Exchange` (previously passed raw key string)
